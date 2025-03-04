@@ -1,5 +1,5 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { LoginDto } from './dto/auth.dto';
+import {LoginDto, RefreshTokenDto} from './dto/auth.dto';
 import { UserService } from '../user/user.service';
 import { compare } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -45,7 +45,7 @@ export class AuthService {
     ).getResponse();
   }
 
-  async refreshToken(user: any) {
+  async refreshToken(user: RefreshTokenDto) {
     const payload = { username: user.username, sub: user.sub };
 
     return {
